@@ -13,12 +13,14 @@ function addClickHandlers() {
 
 function markRead() {
   let id = $(this).closest('tr').data('id')
-  let status = Boolean($(this).parent().siblings('.status').text());
+  // I suppose we don't really need to read it off the dom
+  // since we're just going to set it to true anyway..
+  let status = true;
   console.log(status);
   $.ajax({
     method: 'PUT',
     url: `/books/${id}`,
-    data: {status: !Boolean(status)}
+    data: {status: status}
   }).then((response) => {
     refreshBooks();
   }).catch(error => {
