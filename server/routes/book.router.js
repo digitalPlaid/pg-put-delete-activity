@@ -49,7 +49,10 @@ router.put('/:id', (req, res) => {
     let sqlParams = [id, status];
     pool.query(sqlQuery, sqlParams).then(dbResponse => {
       console.log('Succeeded in update');
-      s
+      res.sendStatus(200);
+    }).catch(error => {
+      console.log('Failed to update record: ', id);
+      res.sendStatus(500);
     })
 });
 
